@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+.gift {
+    max-width:200px;
+    cursor:pointer;
+    transition:all ease 1s;
+
+}
+.gift:hover {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+
+  transition:all ease 1s;
+}
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0) scale(1.1);
+   
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0)  scale(1.1);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0)  scale(1.1);
+
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0)  scale(1.1);
+  }
+}
+</style>
+<body>
+
+
+    <div id="app">
+
+        <img class="gift" v-on:click="open(gift.name)" v-for="gift in gifts" v-bind:src="gift.img" v-bind:alt="gift.name">
+    </div>
+
+
+    <script type="importmap">
+        {
+          "imports": {
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+          }
+        }
+      </script>
+      <script type="module" src="modules/module1.js"></script>
+      
+     
+      
+      <script type="module">
+        import { createApp } from 'vue'
+      
+        createApp({
+          data() {
+            return {
+             gifts:[
+                {
+                    name:'gift1',
+                    img:'img/gift.png'
+                },
+                {
+                    name:'gift2',
+                    img:'img/gift.png'
+                },
+                {
+                    name:'gift3',
+                    img:'img/gift.png'
+                }
+             ]
+            }
+          },
+          methods:{
+            open(name){
+                console.log(name);
+            }
+          }
+        }).mount('#app')
+      </script>
+</body>
+</html>
